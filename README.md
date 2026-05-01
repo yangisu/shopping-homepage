@@ -28,6 +28,13 @@ npm run dev
 - Backend: `http://localhost:4000`
 - API routes: `http://localhost:4000/api/*`
 
+If you want frontend-to-backend connection exactly like the env-local flow:
+
+```bash
+# frontend/.env.local
+VITE_API_BASE_URL=http://localhost:4000/api
+```
+
 ## API Endpoints
 
 - `GET /api/health`

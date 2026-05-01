@@ -113,8 +113,8 @@ export default function App() {
           <a href="#api">API</a>
         </nav>
         <div className="actions">
-          <button className="icon-btn" aria-label="Search">⌕</button>
-          <button className="icon-btn" aria-label="Cart">🛒</button>
+          <button className="icon-btn" aria-label="Search">S</button>
+          <button className="icon-btn" aria-label="Cart">C</button>
           <button className="login-btn" type="button">LOGIN</button>
         </div>
       </header>
