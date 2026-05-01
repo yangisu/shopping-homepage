@@ -1,13 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
+const API_BASE =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.PROD ? "/api" : "http://localhost:4000/api");
 
 const fallbackProducts = [
   {
     id: "fallback-1",
     category: "RPA",
     name: "AUTEEN AutoFlow Starter",
-    description: "중소팀을 위한 업무 자동화 시작 패키지",
+    description: "Starter package for small-team workflow automation",
     price: 149000,
     badge: "BEST"
   },
@@ -15,7 +17,7 @@ const fallbackProducts = [
     id: "fallback-2",
     category: "QA",
     name: "AUTEEN QA Bot Pro",
-    description: "반복 테스트 자동화를 위한 검증 솔루션",
+    description: "Automated regression testing suite with report generation",
     price: 219000,
     badge: "NEW"
   },
@@ -23,11 +25,17 @@ const fallbackProducts = [
     id: "fallback-3",
     category: "SCRAPING",
     name: "AUTEEN Data Miner",
-    description: "웹 데이터 수집과 리포트 자동 생성을 한번에",
+    description: "Web data collection and scheduled reporting automation",
     price: 189000,
     badge: "HOT"
   }
 ];
+
+function joinUrl(base, path) {
+  const normalizedBase = base.replace(/\/+$/, "");
+  const normalizedPath = path.replace(/^\/+/, "");
+  return `${normalizedBase}/${normalizedPath}`;
+}
 
 function formatKrw(value) {
   return new Intl.NumberFormat("ko-KR", {
@@ -49,8 +57,8 @@ export default function App() {
       setLoading(true);
       try {
         const [productRes, toolRes] = await Promise.all([
-          fetch(`${API_BASE}/api/products`),
-          fetch(`${API_BASE}/api/tools`)
+          fetch(joinUrl(API_BASE, "products")),
+          fetch(joinUrl(API_BASE, "tools"))
         ]);
 
         if (!productRes.ok || !toolRes.ok) {
@@ -64,7 +72,7 @@ export default function App() {
           setProducts(productData.items || []);
           setTools(toolData.items || []);
         }
-      } catch (error) {
+      } catch {
         if (!cancelled) {
           setProducts(fallbackProducts);
           setTools([
@@ -105,8 +113,8 @@ export default function App() {
           <a href="#api">API</a>
         </nav>
         <div className="actions">
-          <button className="icon-btn" aria-label="검색">⌕</button>
-          <button className="icon-btn" aria-label="장바구니">🛒</button>
+          <button className="icon-btn" aria-label="Search">⌕</button>
+          <button className="icon-btn" aria-label="Cart">🛒</button>
           <button className="login-btn" type="button">LOGIN</button>
         </div>
       </header>
@@ -120,8 +128,8 @@ export default function App() {
             SELL SMARTER.
           </h1>
           <p>
-            AUTEEN은 테스트 자동화, 업무 자동화, 데이터 자동화 프로그램을 한 곳에서 비교하고
-            바로 도입할 수 있는 쇼핑몰입니다.
+            AUTEEN is a shopping homepage where teams can compare and adopt automation software
+            for QA, workflow automation, and data operations.
           </p>
           <div className="hero-buttons">
             <button type="button" className="primary-btn">SHOP PROGRAMS</button>
@@ -132,18 +140,18 @@ export default function App() {
         <section className="split" id="api">
           <article className="split-card">
             <h3>Frontend</h3>
-            <p>React + Vite 기반 UI. 제품 목록/툴 로고를 백엔드 API에서 받아 렌더링합니다.</p>
+            <p>React + Vite storefront UI that renders products and tool logos from backend APIs.</p>
           </article>
           <article className="split-card">
             <h3>Backend</h3>
-            <p>Express API 서버. 상품 데이터와 자동화 툴 정보를 JSON으로 제공합니다.</p>
+            <p>Express API server that returns product and automation-tool data as JSON.</p>
           </article>
         </section>
 
         <section className="tool-section" id="automation">
           <div className="section-title-row">
             <h2>Automation Tool Marks</h2>
-            <span>대표 툴 로고</span>
+            <span>Representative logos</span>
           </div>
           <div className="tools-grid">
             {tools.map((tool) => (

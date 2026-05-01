@@ -1,5 +1,5 @@
-import express from "express";
 import cors from "cors";
+import express from "express";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -12,7 +12,7 @@ const products = [
     id: "auteen-rpa-1",
     category: "RPA",
     name: "AUTEEN Flow Builder",
-    description: "반복 사무 작업을 드래그 앤 드롭으로 자동화하는 입문형 솔루션",
+    description: "Drag-and-drop starter toolkit for repetitive office workflows",
     price: 129000,
     badge: "BEST"
   },
@@ -20,7 +20,7 @@ const products = [
     id: "auteen-qa-1",
     category: "QA",
     name: "AUTEEN Test Runner",
-    description: "웹앱 회귀 테스트를 일정 기반으로 실행하고 리포트까지 생성",
+    description: "Scheduled web regression tests with automatic reporting",
     price: 239000,
     badge: "NEW"
   },
@@ -28,7 +28,7 @@ const products = [
     id: "auteen-devops-1",
     category: "DEVOPS",
     name: "AUTEEN Deploy Guard",
-    description: "배포 전 체크리스트와 자동 점검 파이프라인을 구성하는 팀용 패키지",
+    description: "Pre-deploy checks and pipeline guard rails for production teams",
     price: 319000,
     badge: "HOT"
   },
@@ -36,7 +36,7 @@ const products = [
     id: "auteen-data-1",
     category: "DATA",
     name: "AUTEEN Crawl Studio",
-    description: "수집부터 가공, 대시보드 전송까지 데이터 자동화를 한 번에",
+    description: "Collection, transformation, and dashboard delivery in one flow",
     price: 179000,
     badge: "NEW"
   },
@@ -44,7 +44,7 @@ const products = [
     id: "auteen-infra-1",
     category: "INFRA",
     name: "AUTEEN Monitor Pulse",
-    description: "서버 상태를 모니터링하고 경고 액션을 자동 수행하는 운영 패키지",
+    description: "Infrastructure monitoring with automated alert actions",
     price: 209000,
     badge: "BEST"
   },
@@ -52,7 +52,7 @@ const products = [
     id: "auteen-ai-1",
     category: "AI AGENT",
     name: "AUTEEN Agent Starter",
-    description: "업무 요청을 자동 분류하고 후속 작업을 실행하는 AI 자동화 도구",
+    description: "AI-powered task triage and automated follow-up execution",
     price: 359000,
     badge: "HOT"
   }
