@@ -67,15 +67,18 @@ const automationTools = [
   { name: "Make", logoUrl: "https://cdn.simpleicons.org/make/6D00CC" }
 ];
 
-app.get("/api/health", (_req, res) => {
+// Support both:
+// 1) Local/separate backend deployment: /api/*
+// 2) Vercel Services routePrefix "/api": backend receives stripped paths /*
+app.get(["/health", "/api/health"], (_req, res) => {
   res.json({ ok: true, service: "auteen-backend" });
 });
 
-app.get("/api/products", (_req, res) => {
+app.get(["/products", "/api/products"], (_req, res) => {
   res.json({ items: products });
 });
 
-app.get("/api/tools", (_req, res) => {
+app.get(["/tools", "/api/tools"], (_req, res) => {
   res.json({ items: automationTools });
 });
 
